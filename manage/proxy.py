@@ -1,10 +1,8 @@
-from fastapi import APIRouter, Path
-from fastapi import Request
-from httpx import AsyncClient, USE_CLIENT_DEFAULT
-from fastapi.responses import StreamingResponse, Response, PlainTextResponse
-from fastapi.exceptions import FastAPIError
 import urllib.parse
 
+from fastapi import APIRouter, Path, Request
+from fastapi.responses import PlainTextResponse, StreamingResponse
+from httpx import AsyncClient
 
 proxy_router = APIRouter()
 

@@ -1,6 +1,7 @@
 from fastapi import FastAPI
-from manage.proxy import proxy_router
+
 from manage.demo import demo_router
+from manage.proxy import proxy_router
 
 app = FastAPI()
 
