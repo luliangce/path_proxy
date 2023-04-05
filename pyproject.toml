@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "dbmanage"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+uvicorn = {version = "^0.21.1", source = "ustc"}
+fastapi = {version = "^0.95.0", source = "ustc"}
+httpx = {version = "^0.23.3", source = "aliyun"}
+aiohttp = "^3.8.4"
+
+[[tool.poetry.source]]
+name = "ustc"
+url = "https://mirrors.ustc.edu.cn/pypi/web/simple"
+
+[[tool.poetry.source]]
+
+name = "aliyun"
+url = "http://mirrors.aliyun.com/pypi/simple/"
+
+
+[tool.poetry.group.dev.dependencies]
+black = {version = "^23.1.0", source = "ustc"}
+pylint = {version = "^2.17.0", source = "ustc"}
+toml = {version = "^0.10.2", source = "ustc"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
