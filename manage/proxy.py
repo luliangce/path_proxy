@@ -15,12 +15,27 @@ async def porxy(request: Request, target: str = Path(...)):
     try:
         u = urllib.parse.urlparse(target)
         if not u.scheme.startswith("http"):
-            raise
-    except:
-        return PlainTextResponse(status_code=500, content=f"无法处理代理链接{target}")
+            referer = request.headers.get("referer")
+            if not referer:
+                raise Exception("no referer and hostname")
+
+            parent = urllib.parse.urlparse(referer).path
+            if parent.startswith("/"):
+                parent = parent[1:]
+
+            parent_url = urllib.parse.urlparse(parent)
+            if not parent_url.hostname:
+                raise Exception("no referer and hostname")
+            target = urllib.parse.urljoin(
+                parent,
+                u.path,
+            )
+
+    except Exception as e:
+        return PlainTextResponse(status_code=500, content=f"无法处理代理链接{target}:{e}")
     headers = {**request.headers}
-    if u.hostname:
-        headers["host"] = u.hostname
+    if hostname := urllib.parse.urlparse(target).hostname:
+        headers["host"] = hostname
     client = AsyncClient(timeout=10, follow_redirects=True)
 
     await client.__aenter__()

@@ -6,11 +6,10 @@ authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.10"
 uvicorn = {version = "^0.21.1", source = "ustc"}
 fastapi = {version = "^0.95.0", source = "ustc"}
 httpx = {version = "^0.23.3", source = "aliyun"}
-aiohttp = "^3.8.4"
 
 [[tool.poetry.source]]
 name = "ustc"
