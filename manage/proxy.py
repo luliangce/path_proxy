@@ -43,6 +43,8 @@ async def porxy(request: Request, target: str = Path(...)):
         method=request.method,
         url=target,
         headers=headers,
+        params=u.query,
+        content=await request.body(),
     )
     remote_response = await client.send(request=remote_request, stream=True)
 
